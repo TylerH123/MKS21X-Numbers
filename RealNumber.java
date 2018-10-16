@@ -1,20 +1,41 @@
 public class RealNumber{
-  private double numerator;
-  private double denominator;
-  public RealNumber compareReals(RealNumber num, RealNumber num2){
-    return num;
+  private double value;
+
+  public RealNumber(double v){
+    value = v;
   }
-  public double compareRatReal(double num, RealNumber num2){
-    return num;
+
+  /*
+  *Return the sum of this and the other
+  */
+  public double add(RealNumber other){
+    return this.getValue() + other.getValue();
   }
-  public double getVal(){
-    return numerator / denominator;
+  /*
+  *Return the product of this and the other
+  */
+  public double multiply(RealNumber other){
+    return this.getValue() * other.getValue();
   }
-  public void setVal(double num, double denom){
-    numerator = num;
-    denominator = denom;
+  /*
+  *Return the this divided by the other
+  */
+  public double divide(RealNumber other){
+    return this.getValue() / other.getValue();
   }
+  /*
+  *Return the this minus the other
+  */
+  public double subtract(RealNumber other){
+    return this.getValue() - other.getValue();
+  }
+
+
+  public double getValue(){
+    return value;
+  }
+
   public String toString(){
-    return numerator + "/" + denominator;
+    return ""+value;
   }
 }
