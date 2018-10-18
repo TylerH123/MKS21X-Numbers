@@ -17,10 +17,11 @@ public class RationalNumber extends RealNumber
       numerator = nume;
       denominator = deno;
     }
+    reduce();
   }
 
   public double getValue(){
-    return numerator / denominator;
+    return (double)numerator / (double)denominator;
   }
 
   /**
@@ -64,10 +65,17 @@ public class RationalNumber extends RealNumber
   *@param b the second integer
   *@return the value of the GCD
   */
+  private static int bigger(int a, int b){
+    if (a >= b) return a;
+    else{
+      return b;
+    }
+  }
   private static int gcd(int a, int b){
-    /*use euclids method or a better one*/
-
-    return 0;
+    if (b == 0){
+      return a;
+    }
+    return gcd(b, a % b);
   }
 
 
@@ -78,7 +86,9 @@ public class RationalNumber extends RealNumber
   *reduced after construction.
   */
   private void reduce(){
-    gcd(numerator, denominator);
+    int factor = gcd(numerator, denominator);
+    numerator = numerator / factor;
+    denominator = denominator / factor;
   }
 
 
@@ -90,26 +100,26 @@ public class RationalNumber extends RealNumber
   *Return a new RationalNumber that is the product of this and the other
   */
   public RationalNumber multiply(RationalNumber other){
-    return null;
+    return new RationalNumber(numerator * other.numerator, denominator * other.denominator);
   }
 
   /**
   *Return a new RationalNumber that is the this divided by the other
   */
   public RationalNumber divide(RationalNumber other){
-    return null;
+    return new RationalNumber(numerator / other.numerator, denominator / other.denominator);
   }
 
   /**
   *Return a new RationalNumber that is the sum of this and the other
   */
   public RationalNumber add(RationalNumber other){
-    return null;
+    return new RationalNumber((numerator * other.denominator + other.numerator * denominator), denominator * other.denominator);
   }
   /**
   *Return a new RationalNumber that this minus the other
   */
   public RationalNumber subtract(RationalNumber other){
-    return null;
+    return new RationalNumber((numerator * other.denominator - other.numerator * denominator), denominator * other.denominator);
   }
 }
